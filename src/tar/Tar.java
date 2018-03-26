@@ -13,44 +13,40 @@ public class Tar {
         String input = in.nextLine();
         String[] command = input.split(" ");
 
-        switch (command[0]) {
-            case "-u": {
-                List<String> lines = Files.readAllLines(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\input\\" + command[1]));
+        if (command.length == 2) {
+            List<String> lines = Files.readAllLines(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\input\\" + command[1]));
 
-                Map<String, ArrayList<String>> map = new HashMap<>();
-                int counter = 0;
-                String[] names = new String[2];
+            Map<String, ArrayList<String>> map = new HashMap<>();
+            int counter = 0;
+            String[] names = new String[2];
 
-                for (String line : lines) {
-                    if (line.startsWith("_") && line.endsWith(".txt_")) {
-                        map.put(line.substring(1, line.length() - 2), new ArrayList<>());
-                        names[counter] = line.substring(1, line.length() - 2);
-                        counter++;
-                    } else {
-                        map.get(names[counter - 1]).add(line);
-                    }
-                }
-
-                for (String name : names) {
-
-                    BufferedWriter writer;
-                    Writer write = new Writer();
-                    writer = write.toWrite(name);
-
-                    for (String line : map.get(name)) {
-                        writer.write(line);
-                        if (map.get(name).indexOf(line) != map.get(name).size() - 1){
-                            writer.newLine();
-                        }
-                    }
-                    writer.close();
+            for (String line : lines) {
+                if (line.startsWith("_") && line.endsWith(".txt_")) {
+                    map.put(line.substring(1, line.length() - 2), new ArrayList<>());
+                    names[counter] = line.substring(1, line.length() - 2);
+                    counter++;
+                } else {
+                    map.get(names[counter - 1]).add(line);
                 }
             }
-            case "tar": {
-                break;
-                // сюда объединение
+
+
+            Writer writer = new Writer();
+            writer.toWrite(command[0],map);
+        } else {
+
+            ArrayList<String> first = new ArrayList<>(Files.readAllLines(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\input\\" + command[1])));
+            ArrayList<String> second = new ArrayList<>(Files.readAllLines(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\input\\" + command[2])));
+            Map<String, ArrayList<String>> map = new HashMap<>();
+            map.put(command[1] , first);
+            map.put(command[2], second);
+
+            for (String name : map.keySet()) {
+
+                Writer writer = new Writer();
+                writer.toWrite(command[0],map);
+
             }
         }
     }
-
 }
