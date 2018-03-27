@@ -39,8 +39,8 @@ class TarTest {
 
         Tar.main(command);
 
-        assertFileExist("firstAfterSeparate.tx");
-        assertFileContent( "firstAfterSeparate.tx",
+        assertFileExist("firstAfterSeparate.txt");
+        assertFileContent( "firstAfterSeparate.txt",
                 "Как часто летнею порою,\n" +
                         "Когда прозрачно и светло\n" +
                         "Ночное небо над Невою8\n" +
@@ -56,8 +56,8 @@ class TarTest {
                         "Так уносились мы мечтой\n" +
                         "К началу жизни молодой.");
 
-        assertFileExist("secondAfterSeparate.tx");
-        assertFileContent("secondAfterSeparate.tx",
+        assertFileExist("secondAfterSeparate.txt");
+        assertFileContent("secondAfterSeparate.txt",
                 "Его нежданным появленьем,\n" +
                         "Мгновенной нежностью очей\n" +
                         "И странным с Ольгой поведеньем\n" +
@@ -73,8 +73,8 @@ class TarTest {
                         "Я не ропщу: зачем роптать?\n" +
                         "Не может он мне счастья дать».");
 
-        Files.delete(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\firstAfterSeparate.tx"));
-        Files.delete(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\secondAfterSeparate.tx"));
+        Files.delete(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\firstAfterSeparate.txt"));
+        Files.delete(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\secondAfterSeparate.txt"));
     }
 
     @Test

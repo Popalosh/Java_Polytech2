@@ -14,8 +14,8 @@ public class Tar {
 
             for (String line : lines) {
                 if (line.startsWith("_") && line.endsWith(".txt_")) {
-                    map.put(line.substring(1, line.length() - 2), new ArrayList<>());
-                    names.add(line.substring(1, line.length() - 2));
+                    map.put(line.substring(1, line.length() - 1), new ArrayList<>());
+                    names.add(line.substring(1, line.length() - 1));
                     counter++;
                 } else {
                     map.get(names.get(counter)).add(line);
