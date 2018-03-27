@@ -1,20 +1,12 @@
-import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.Scanner;
-
 
 public class Tar {
     public static void main(String[] args) throws Exception {
 
-        Scanner in = new Scanner(System.in);
-        String input = in.nextLine();
-        String[] command = input.split(" ");
-
-        if (command.length == 2) {
-            List<String> lines = Files.readAllLines(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\input\\" + command[1]));
+        if (Objects.equals(args.length, 2) && args[0].equals("-u")) {
+            List<String> lines = Files.readAllLines(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\input\\" + args[1]));
 
             Map<String, ArrayList<String>> map = new HashMap<>();
             int counter = -1;
@@ -30,24 +22,25 @@ public class Tar {
                 }
             }
 
-
             Writer writer = new Writer();
             writer.toWrite(names, map);
         } else {
-            Map<String, ArrayList<String>> map = new HashMap<>();
+            if (args[0].equals("tar") && args[args.length - 2].equals("-out")) {
+                Map<String, ArrayList<String>> map = new HashMap<>();
 
-            for (int i = 1; i < command.length - 2; i++) {
-                map.put(command[i], new ArrayList<>(Files.readAllLines(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\input\\" + command[i]))));
-            }
+                for (int i = 1; i < args.length - 2; i++) {
+                    map.put(args[i], new ArrayList<>(Files.readAllLines(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\input\\" + args[i]))));
+                }
 
-            for (String name : map.keySet()) {
+                for (String name : map.keySet()) {
 
-                String outputName =  command[command.length-1];
-                List<String> listOfNames = new ArrayList<>(Collections.singleton(outputName));
-                Writer writer = new Writer();
-                writer.toWrite(listOfNames, map);
+                    String outputName = args[args.length - 1];
+                    List<String> listOfNames = new ArrayList<>(Collections.singleton(outputName));
+                    Writer writer = new Writer();
+                    writer.toWrite(listOfNames, map);
 
-            }
+                }
+            } else throw new IllegalArgumentException();
         }
     }
 }
