@@ -22,8 +22,7 @@ public class Tar {
                 }
             }
 
-            Writer writer = new Writer();
-            writer.toWrite(names, map);
+            Writer.toWrite(names, map);
         } else {
             if (args[0].equals("tar") && args[args.length - 2].equals("-out")) {
                 Map<String, ArrayList<String>> map = new HashMap<>();
@@ -36,8 +35,8 @@ public class Tar {
 
                     String outputName = args[args.length - 1];
                     List<String> listOfNames = new ArrayList<>(Collections.singleton(outputName));
-                    Writer writer = new Writer();
-                    writer.toWrite(listOfNames, map);
+
+                    Writer.toWrite(listOfNames, map);
 
                 }
             } else throw new IllegalArgumentException();

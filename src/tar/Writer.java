@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Writer {
 
-    public void toWrite(List names, Map<String, ArrayList<String>> map) throws IOException {
+    public static void toWrite(List names, Map<String, ArrayList<String>> map) throws IOException {
         if (names.size() > 1) {
 
             for (String name : map.keySet()) {
