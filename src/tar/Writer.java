@@ -1,52 +1,52 @@
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class Writer {
 
-    public static void toWrite(List names, Map<String, ArrayList<String>> map) throws IOException {
-        if (names.size() > 1) {
+    public static void toWrite(Map<String, ArrayList<String>> contents, List<Integer> sizes,String outputName) throws IOException {
+        if (!(sizes.size() > 1)) {
 
-            for (String name : map.keySet()) {
+            for (String name : contents.keySet()) {
 
-                File file = new File("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\" + name );
+                File file = new File("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\output\\" + name);
 
-                BufferedWriter writer = new BufferedWriter(
-                        new OutputStreamWriter(
-                                new FileOutputStream("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\" + name ), StandardCharsets.UTF_8));
+                BufferedWriter writer = Files.newBufferedWriter(Paths.get(file.toURI()));
 
-                for (String line : map.get(name)) {
-
+                for (String line : contents.get(name)) {
                     writer.write(line);
-                    if (map.get(name).indexOf(line) != map.get(name).size() - 1) {
+                    if (contents.get(name).indexOf(line) != contents.get(name).size() - 1) {
                         writer.newLine();
                     }
                 }
                 writer.close();
             }
         } else {
+            int i = 0;
 
-            File file = new File("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\" + names.get(0) + ".txt");
+            File file = new File("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\output\\" + outputName);
 
-            BufferedWriter writer = new BufferedWriter(
-                    new OutputStreamWriter(
-                            new FileOutputStream("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\" + names.get(0) + ".txt"), StandardCharsets.UTF_8));
+            BufferedWriter writer = Files.newBufferedWriter(Paths.get(file.toURI()));
+            int counter = 0;
+            writer.write(String.valueOf(sizes.size()));
+            writer.newLine();
+            for (String name : contents.keySet()) {
 
-            int counter = 1;
-            for (String name : map.keySet()) {
-                writer.write("_" + name + ".txt_");
+                writer.write(name + " " + sizes.get(i));
                 writer.newLine();
-                for (String line : map.get(name)) {
-
+                for (String line : contents.get(name)) {
                     writer.write(line);
-                    if (map.get(name).indexOf(line) != map.get(name).size() - 1) {
+                    if (contents.get(name).indexOf(line) != contents.get(name).size() - 1) {
                         writer.newLine();
                     }
                 }
-                if (counter != map.size()) {
+                if (counter < sizes.size()){
                     writer.newLine();
+                    counter++;
                 }
-                counter++;
+                i++;
             }
             writer.close();
         }

@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class TarTest {
 
     private void assertFileContent(String name, String expectedContent) throws IOException {
-        List<String> lines = Files.readAllLines(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\" + name));
+        List<String> lines = Files.readAllLines(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\output\\" + name));
         StringBuilder content = new StringBuilder();
         int counter = 1;
         for (String line : lines) {
@@ -26,7 +26,7 @@ class TarTest {
     }
 
     private void assertFileExist(String name) {
-        File file = new File("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\" + name);
+        File file = new File("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\output\\" + name);
         assertTrue(file.exists());
     }
 
@@ -35,7 +35,7 @@ class TarTest {
 
         String[] command;
 
-        command = "-u toSeparate".split(" ");
+        command = "-u toSeparate.txt".split(" ");
 
         Tar.main(command);
 
@@ -73,8 +73,8 @@ class TarTest {
                         "Я не ропщу: зачем роптать?\n" +
                         "Не может он мне счастья дать».");
 
-        Files.delete(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\firstAfterSeparate.txt"));
-        Files.delete(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\secondAfterSeparate.txt"));
+        Files.delete(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\output\\firstAfterSeparate.txt"));
+        Files.delete(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\output\\secondAfterSeparate.txt"));
     }
 
     @Test
@@ -82,13 +82,14 @@ class TarTest {
 
         String[] command;
 
-        command = "tar firstToUnion secondToUnion -out file".split(" ");
+        command = "tar firstToUnion.txt secondToUnion.txt -out file.txt".split(" ");
 
         Tar.main(command);
 
         assertFileExist("file.txt");
         assertFileContent("file.txt",
-                "_firstToUnion.txt_\n" +
+                "2\n" +
+                        "firstToUnion.txt 14\n" +
                         "Как часто летнею порою,\n" +
                         "Когда прозрачно и светло\n" +
                         "Ночное небо над Невою8\n" +
@@ -103,7 +104,7 @@ class TarTest {
                         "Перенесен колодник сонный,\n" +
                         "Так уносились мы мечтой\n" +
                         "К началу жизни молодой.\n" +
-                        "_secondToUnion.txt_\n" +
+                        "secondToUnion.txt 14\n" +
                         "Его нежданным появленьем,\n" +
                         "Мгновенной нежностью очей\n" +
                         "И странным с Ольгой поведеньем\n" +
@@ -119,6 +120,6 @@ class TarTest {
                         "Я не ропщу: зачем роптать?\n" +
                         "Не может он мне счастья дать».");
 
-        Files.delete(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\file.txt"));
+        Files.delete(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\output\\file.txt"));
     }
 }

@@ -1,4 +1,5 @@
-_firstAfterSeparate.txt_
+2
+firstAfterSeparate.txt 14
 Как часто летнею порою,
 Когда прозрачно и светло
 Ночное небо над Невою8
@@ -13,7 +14,7 @@ _firstAfterSeparate.txt_
 Перенесен колодник сонный,
 Так уносились мы мечтой
 К началу жизни молодой.
-_secondAfterSeparate.txt_
+secondAfterSeparate.txt 14
 Его нежданным появленьем,
 Мгновенной нежностью очей
 И странным с Ольгой поведеньем
