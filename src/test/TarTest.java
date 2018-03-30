@@ -40,10 +40,10 @@ class TarTest {
         Tar.main(command);
 
         assertFileExist("firstAfterSeparate.txt");
-        assertFileContent( "firstAfterSeparate.txt",
+        assertFileContent("firstAfterSeparate.txt",
                 "Как часто летнею порою,\n" +
                         "Когда прозрачно и светло\n" +
-                        "Ночное небо над Невою8\n" +
+                        "Ночное небо над Невою\n" +
                         "И вод веселое стекло\n" +
                         "Не отражает лик Дианы,\n" +
                         "Воспомня прежних лет романы,\n" +
@@ -92,7 +92,7 @@ class TarTest {
                         "firstToUnion.txt 14\n" +
                         "Как часто летнею порою,\n" +
                         "Когда прозрачно и светло\n" +
-                        "Ночное небо над Невою8\n" +
+                        "Ночное небо над Невою\n" +
                         "И вод веселое стекло\n" +
                         "Не отражает лик Дианы,\n" +
                         "Воспомня прежних лет романы,\n" +
