@@ -1,5 +1,4 @@
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -7,23 +6,7 @@ import java.util.*;
 public class Writer {
 
     public static void toWrite(Map<String, ArrayList<String>> contents, List<Integer> sizes,String outputName) throws IOException {
-        if (!(sizes.size() > 1)) {
-
-            for (String name : contents.keySet()) {
-
-                File file = new File("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\output\\" + name);
-
-                BufferedWriter writer = Files.newBufferedWriter(Paths.get(file.toURI()));
-
-                for (String line : contents.get(name)) {
-                    writer.write(line);
-                    if (contents.get(name).indexOf(line) != contents.get(name).size() - 1) {
-                        writer.newLine();
-                    }
-                }
-                writer.close();
-            }
-        } else {
+        if ((sizes.size() > 1)) {
             int i = 0;
 
             File file = new File("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\output\\" + outputName);
@@ -49,6 +32,22 @@ public class Writer {
                 i++;
             }
             writer.close();
+        } else {
+
+            for (String name : contents.keySet()) {
+
+                File file = new File("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\output\\" + name);
+
+                BufferedWriter writer = Files.newBufferedWriter(Paths.get(file.toURI()));
+
+                for (String line : contents.get(name)) {
+                    writer.write(line);
+                    if (contents.get(name).indexOf(line) != contents.get(name).size() - 1) {
+                        writer.newLine();
+                    }
+                }
+                writer.close();
+            }
         }
     }
 }
