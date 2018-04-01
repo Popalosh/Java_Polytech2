@@ -1,6 +1,5 @@
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -34,7 +33,6 @@ public class Tar {
                 counter += size + 1;
                 i++;
             }
-
 
             toWrite(contents);
 
@@ -84,11 +82,10 @@ public class Tar {
         writer.newLine();
 
         int counter = 0;
-        int i = 0;
 
         for (String name : contents.keySet()) {
 
-            writer.write(name + " " + sizes.get(i));
+            writer.write(name + " " + sizes.get(counter));
             writer.newLine();
             for (String line : contents.get(name)) {
                 writer.write(line);
@@ -100,7 +97,6 @@ public class Tar {
                 writer.newLine();
                 counter++;
             }
-            i++;
         }
         writer.close();
     }
