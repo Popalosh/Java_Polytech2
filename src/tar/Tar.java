@@ -12,7 +12,7 @@ public class Tar {
             List<String> lines = Files.readAllLines(Paths.get(
                     "C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\input\\" + args[1]));
 
-            Map<String, ArrayList<String>> contents = new HashMap<>();
+            Map<String, ArrayList<String>> contents = new LinkedHashMap<>();
 
             int files = Integer.parseInt(lines.get(0));
             int i = 1;
@@ -39,7 +39,7 @@ public class Tar {
         } else {
             if (args[0].equals("tar") && args[args.length - 2].equals("-out")) {
 
-                Map<String, ArrayList<String>> contents = new HashMap<>();
+                Map<String, ArrayList<String>> contents = new LinkedHashMap<>();
                 List<Integer> sizes = new ArrayList<>();
 
                 for (int i = 1; i < args.length - 2; i++) {
