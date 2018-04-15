@@ -2,39 +2,24 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 
-public class Tar {
+class Methods {
 
     private String flag;
-    private Map<String, ArrayList<String>> contents;
-    private List<Integer> sizes;
-    private List<String> names;
+    final Map<String, ArrayList<String>> contents;
+    final List<Integer> sizes;
+    final List<String> names;
 
-    private Tar() {
+    Methods() {
         this.flag = "";
         this.contents = new LinkedHashMap<>();
         this.sizes = new ArrayList<>();
         this.names = new ArrayList<>();
     }
 
-    public static void main(String[] args) throws Exception {
 
-        Tar tar = new Tar();
-
-        String flag = tar.parseCommand(args);
-
-        tar.toRead(flag, tar.names);
-
-        if (flag.equals("-u")) {
-            tar.toWrite(tar.contents);
-        } else {
-            tar.toWrite(tar.contents, tar.sizes, tar.names.get(tar.names.size() - 1));
-        }
-    }
-
-    private String parseCommand(String[] args) {
+    String parseCommand(String[] args) {
         try {
             if (args[0].equals("-u") && args.length == 2) {
                 flag = args[0];
@@ -55,7 +40,7 @@ public class Tar {
         return "";
     }
 
-    private void toRead(String flag, List<String> names) throws Exception {
+    void toRead(String flag, List<String> names) throws Exception {
 
         if (flag.equals("-u")) {
             File file = new File("input\\", names.get(0));
@@ -80,7 +65,7 @@ public class Tar {
                     }
                     counter += size + 1;
                 } else {
-                    contents.put(name,new ArrayList<>());
+                    contents.put(name, new ArrayList<>());
                     counter += 1;
                 }
             }
@@ -93,7 +78,7 @@ public class Tar {
         }
     }
 
-    private void toWrite(Map<String, ArrayList<String>> contents) throws Exception {
+    void toWrite(Map<String, ArrayList<String>> contents) throws Exception {
 
         for (String name : contents.keySet()) {
 
@@ -115,7 +100,7 @@ public class Tar {
         }
     }
 
-    private void toWrite(Map<String, ArrayList<String>> contents, List<Integer> sizes, String outputName) throws Exception {
+    void toWrite(Map<String, ArrayList<String>> contents, List<Integer> sizes, String outputName) throws Exception {
 
         File file = new File("\\output\\", outputName);
         BufferedWriter writer = Files.newBufferedWriter(file.toPath());

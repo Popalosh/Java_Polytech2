@@ -1,36 +1,9 @@
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class TarTest {
-
-    private void assertFileContent(String name, String expectedContent) throws IOException {
-        File file = new File("\\output\\" + name);
-        List<String> lines = Files.readAllLines(file.toPath());
-        StringBuilder content = new StringBuilder();
-        int counter = 1;
-        for (String line : lines) {
-            if (counter < lines.size()) {
-                content.append(line).append("\n");
-                counter++;
-            } else {
-                content.append(line);
-            }
-        }
-        assertEquals(expectedContent, content.toString());
-    }
-
-    private void assertFileExist(String name) {
-        File file = new File("\\output\\" + name);
-        assertTrue(file.exists());
-    }
-
     @Test
     void isEqualAfterSeparate() throws Exception {
 
@@ -38,10 +11,10 @@ class TarTest {
 
         command = "-u toSeparate.txt".split(" ");
 
-        Tar.main(command);
+        Main.main(command);
 
-        assertFileExist("firstAfterSeparate.txt");
-        assertFileContent("firstAfterSeparate.txt",
+        TestMethods.assertFileExist("firstAfterSeparate.txt");
+        TestMethods.assertFileContent("firstAfterSeparate.txt",
                 "Как часто летнею порою,\n" +
                         "Когда прозрачно и светло\n" +
                         "Ночное небо над Невою\n" +
@@ -57,8 +30,8 @@ class TarTest {
                         "Так уносились мы мечтой\n" +
                         "К началу жизни молодой.");
 
-        assertFileExist("secondAfterSeparate.txt");
-        assertFileContent("secondAfterSeparate.txt",
+        TestMethods.assertFileExist("secondAfterSeparate.txt");
+        TestMethods.assertFileContent("secondAfterSeparate.txt",
                 "Его нежданным появленьем,\n" +
                         "Мгновенной нежностью очей\n" +
                         "И странным с Ольгой поведеньем\n" +
@@ -79,15 +52,15 @@ class TarTest {
 
         command = "-u text.txt".split(" ");
 
-        Tar.main(command);
+        Main.main(command);
 
-        assertFileExist("firstAfterSep.txt");
-        assertFileContent("firstAfterSep.txt", "Class/Interface\n" +
+        TestMethods.assertFileExist("firstAfterSep.txt");
+        TestMethods.assertFileContent("firstAfterSep.txt", "Class/Interface\n" +
                 "Each class, interface, nested class and nested interface has its own separate page.\n" +
                 "Each of these pages has three sections consisting of a class/interface description, summary tables, and detailed member descriptions:");
 
-        assertFileExist("secondAfterSep.txt");
-        assertFileContent("secondAfterSep.txt","\n" +
+        TestMethods.assertFileExist("secondAfterSep.txt");
+        TestMethods.assertFileContent("secondAfterSep.txt","\n" +
                 "Class inheritance diagram\n" +
                 "Direct Subclasses\n" +
                 "All Known Subinterfaces\n" +
@@ -105,8 +78,8 @@ class TarTest {
                 "The summary entries are alphabetical, while the detailed descriptions are in the order they appear in the source code.\n" +
                 "This preserves the logical groupings established by the programmer.");
 
-        assertFileExist("LOLCODE.txt");
-        assertFileContent("LOLCODE.txt","LOLCODE — эзотерический язык программирования, созданный под влиянием интернет-мема о lolcat’ах.\n" +
+        TestMethods.assertFileExist("LOLCODE.txt");
+        TestMethods.assertFileContent("LOLCODE.txt","LOLCODE — эзотерический язык программирования, созданный под влиянием интернет-мема о lolcat’ах.\n" +
                 "\n" +
                 "На официальном сайте находится спецификация этого языка, и, хотя некоторые моменты в ней не описаны,\n" +
                 "уже существуют несколько работающих интерпретаторов и компиляторов этого языка.\n" +
@@ -124,10 +97,10 @@ class TarTest {
 
         command = "tar firstToUnion.txt emptyFile.txt secondToUnion.txt -out file.txt".split(" ");
 
-        Tar.main(command);
+        Main.main(command);
 
-        assertFileExist("file.txt");
-        assertFileContent("file.txt",
+        TestMethods.assertFileExist("file.txt");
+        TestMethods.assertFileContent("file.txt",
                 "3\n" +
                         "firstToUnion.txt 14\n" +
                         "Как часто летнею порою,\n" +
@@ -165,11 +138,11 @@ class TarTest {
 
         command = ("tar first.txt second.txt -out text.txt").split(" ");
 
-        Tar.main(command);
+        Main.main(command);
 
-        assertFileExist("text.txt");
+        TestMethods.assertFileExist("text.txt");
 
-        assertFileContent("text.txt", "2\n" +
+        TestMethods.assertFileContent("text.txt", "2\n" +
                 "first.txt 5\n" +
                 "text.txt rwx 04/09/2018 04:16:04 0.791015625 KB\n" +
                 "schem1.rar rwx 04/01/2018 23:33:54 1.8837890625 KB\n" +
