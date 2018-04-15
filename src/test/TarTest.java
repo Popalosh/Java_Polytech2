@@ -11,7 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class TarTest {
 
     private void assertFileContent(String name, String expectedContent) throws IOException {
-        List<String> lines = Files.readAllLines(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\output\\" + name));
+        File file = new File("\\output\\" + name);
+        List<String> lines = Files.readAllLines(file.toPath());
         StringBuilder content = new StringBuilder();
         int counter = 1;
         for (String line : lines) {
@@ -26,7 +27,7 @@ class TarTest {
     }
 
     private void assertFileExist(String name) {
-        File file = new File("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\output\\" + name);
+        File file = new File("\\output\\" + name);
         assertTrue(file.exists());
     }
 
@@ -73,8 +74,8 @@ class TarTest {
                         "Я не ропщу: зачем роптать?\n" +
                         "Не может он мне счастья дать».");
 
-        Files.delete(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\output\\firstAfterSeparate.txt"));
-        Files.delete(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\output\\secondAfterSeparate.txt"));
+        Files.delete(Paths.get("\\output\\firstAfterSeparate.txt"));
+        Files.delete(Paths.get("\\output\\secondAfterSeparate.txt"));
 
         command = "-u text.txt".split(" ");
 
@@ -111,9 +112,9 @@ class TarTest {
                 "уже существуют несколько работающих интерпретаторов и компиляторов этого языка.\n" +
                 "LOLCODE является Тьюринг-полным языком, так как возможна реализация интерпретатора Brainfuck на LOLCODE.");
 
-        Files.delete(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\output\\firstAfterSep.txt"));
-        Files.delete(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\output\\secondAfterSep.txt"));
-        Files.delete(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\output\\LOLCODE.txt"));
+        Files.delete(Paths.get("\\output\\firstAfterSep.txt"));
+        Files.delete(Paths.get("\\output\\secondAfterSep.txt"));
+        Files.delete(Paths.get("\\output\\LOLCODE.txt"));
     }
 
     @Test
@@ -121,13 +122,13 @@ class TarTest {
 
         String[] command;
 
-        command = "tar firstToUnion.txt secondToUnion.txt -out file.txt".split(" ");
+        command = "tar firstToUnion.txt emptyFile.txt secondToUnion.txt -out file.txt".split(" ");
 
         Tar.main(command);
 
         assertFileExist("file.txt");
         assertFileContent("file.txt",
-                "2\n" +
+                "3\n" +
                         "firstToUnion.txt 14\n" +
                         "Как часто летнею порою,\n" +
                         "Когда прозрачно и светло\n" +
@@ -143,6 +144,7 @@ class TarTest {
                         "Перенесен колодник сонный,\n" +
                         "Так уносились мы мечтой\n" +
                         "К началу жизни молодой.\n" +
+                        "emptyFile.txt 0\n" +
                         "secondToUnion.txt 14\n" +
                         "Его нежданным появленьем,\n" +
                         "Мгновенной нежностью очей\n" +
@@ -159,7 +161,7 @@ class TarTest {
                         "Я не ропщу: зачем роптать?\n" +
                         "Не может он мне счастья дать».");
 
-        Files.delete(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\output\\file.txt"));
+        Files.delete(Paths.get("\\output\\file.txt"));
 
         command = ("tar first.txt second.txt -out text.txt").split(" ");
 
@@ -181,6 +183,6 @@ class TarTest {
                 "schem1.rar 111 1522614834920 1929 Bytes\n" +
                 "text.txt 111 1523236564871 810 Bytes");
 
-        Files.delete(Paths.get("C:\\Users\\Popalosh\\IdeaProjects\\Java_polytech2\\output\\text.txt"));
+        Files.delete(Paths.get("\\output\\text.txt"));
     }
 }

@@ -1,8 +1,9 @@
-3
+4
 firstAfterSep.txt 3
 Class/Interface
 Each class, interface, nested class and nested interface has its own separate page.
 Each of these pages has three sections consisting of a class/interface description, summary tables, and detailed member descriptions:
+emptyFile.txt 0
 secondAfterSep.txt 17
 
 Class inheritance diagram

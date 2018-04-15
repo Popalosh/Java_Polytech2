@@ -9,8 +9,5 @@
         <module name="Java_polytech2" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Java_polytech2" target="1.9" />
-    </bytecodeTargetLevel>
   </component>
 </project>
