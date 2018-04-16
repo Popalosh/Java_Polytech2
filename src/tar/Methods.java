@@ -82,7 +82,7 @@ class Methods {
 
         for (String name : contents.keySet()) {
 
-            File file = new File("\\output\\", name);
+            File file = new File("output\\", name);
 
             BufferedWriter writer = Files.newBufferedWriter(file.toPath());
 
@@ -102,7 +102,7 @@ class Methods {
 
     void toWrite(Map<String, ArrayList<String>> contents, List<Integer> sizes, String outputName) throws Exception {
 
-        File file = new File("\\output\\", outputName);
+        File file = new File("output\\", outputName);
         BufferedWriter writer = Files.newBufferedWriter(file.toPath());
 
         writer.write(String.valueOf(sizes.size()));

@@ -47,8 +47,8 @@ class TarTest {
                         "Я не ропщу: зачем роптать?\n" +
                         "Не может он мне счастья дать».");
 
-        Files.delete(Paths.get("\\output\\firstAfterSeparate.txt"));
-        Files.delete(Paths.get("\\output\\secondAfterSeparate.txt"));
+        Files.delete(Paths.get("output\\firstAfterSeparate.txt"));
+        Files.delete(Paths.get("output\\secondAfterSeparate.txt"));
 
         command = "-u text.txt".split(" ");
 
@@ -85,9 +85,10 @@ class TarTest {
                 "уже существуют несколько работающих интерпретаторов и компиляторов этого языка.\n" +
                 "LOLCODE является Тьюринг-полным языком, так как возможна реализация интерпретатора Brainfuck на LOLCODE.");
 
-        Files.delete(Paths.get("\\output\\firstAfterSep.txt"));
-        Files.delete(Paths.get("\\output\\secondAfterSep.txt"));
-        Files.delete(Paths.get("\\output\\LOLCODE.txt"));
+        Files.delete(Paths.get("output\\firstAfterSep.txt"));
+        Files.delete(Paths.get("output\\secondAfterSep.txt"));
+        Files.delete(Paths.get("output\\LOLCODE.txt"));
+        Files.delete(Paths.get("output\\emptyFile.txt"));
     }
 
     @Test
@@ -134,7 +135,7 @@ class TarTest {
                         "Я не ропщу: зачем роптать?\n" +
                         "Не может он мне счастья дать».");
 
-        Files.delete(Paths.get("\\output\\file.txt"));
+        Files.delete(Paths.get("output\\file.txt"));
 
         command = ("tar first.txt second.txt -out text.txt").split(" ");
 
@@ -156,6 +157,6 @@ class TarTest {
                 "schem1.rar 111 1522614834920 1929 Bytes\n" +
                 "text.txt 111 1523236564871 810 Bytes");
 
-        Files.delete(Paths.get("\\output\\text.txt"));
+        Files.delete(Paths.get( "output\\text.txt"));
     }
 }

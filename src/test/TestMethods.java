@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class TestMethods {
 
     static void assertFileContent(String name, String expectedContent) throws Exception {
-        File file = new File("\\output\\" + name);
+        File file = new File("output\\" + name);
         List<String> lines = Files.readAllLines(file.toPath());
         StringBuilder content = new StringBuilder();
         int counter = 1;
@@ -24,7 +24,7 @@ class TestMethods {
     }
 
     static void assertFileExist(String name) {
-        File file = new File("\\output\\" + name);
+        File file = new File("output\\" + name);
         assertTrue(file.exists());
     }
 }
