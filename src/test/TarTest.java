@@ -84,7 +84,9 @@ class TarTest {
                 "На официальном сайте находится спецификация этого языка, и, хотя некоторые моменты в ней не описаны,\n" +
                 "уже существуют несколько работающих интерпретаторов и компиляторов этого языка.\n" +
                 "LOLCODE является Тьюринг-полным языком, так как возможна реализация интерпретатора Brainfuck на LOLCODE.");
-
+        
+        TestMethods.assertFileExist("emptyFile.txt")
+            
         Files.delete(Paths.get("output\\firstAfterSep.txt"));
         Files.delete(Paths.get("output\\secondAfterSep.txt"));
         Files.delete(Paths.get("output\\LOLCODE.txt"));
