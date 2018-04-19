@@ -6,10 +6,10 @@ import java.util.*;
 
 class Methods {
 
-    private String flag;
-    final Map<String, ArrayList<String>> contents;
-    final List<Integer> sizes;
-    final List<String> names;
+    public String flag;
+    public final Map<String, ArrayList<String>> contents;
+    public final List<Integer> sizes;
+    public final List<String> names;
 
     Methods() {
         this.flag = "";
@@ -25,7 +25,7 @@ class Methods {
                 flag = args[0];
                 names.add(args[1]);
                 return flag;
-            } else if (args[0].equals("tar") && args[args.length - 2].equals("-out")) {
+            } else if (args[args.length - 2].equals("-out")) {
                 flag = args[0];
                 for (String name : args)
                     if (!name.equals("tar") && !name.equals("-out"))
